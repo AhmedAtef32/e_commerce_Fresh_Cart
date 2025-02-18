@@ -4,6 +4,7 @@ import { isLoggedGuard } from './core/guards/is-logged.guard';
 import { notLoggedGuard } from './core/guards/not-logged.guard';
 
 export const routes: Routes = [
+  {path:"" , redirectTo:"home" , pathMatch:"full"},
   {path:""  ,canActivate:[isLoggedGuard], loadComponent: ()=> import("./core/layout/auth/auth.component").then(c=>c.AuthComponent), children: [
     {path:"" , redirectTo:"register",pathMatch:"full"},
     {path:"register" , loadComponent: ()=> import("./core/page/register/register.component").then(c=>c.RegisterComponent)},
