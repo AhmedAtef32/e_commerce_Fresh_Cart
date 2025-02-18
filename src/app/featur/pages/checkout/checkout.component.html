@@ -1,0 +1,161 @@
+<section class="py-10">
+  <div class="container">
+    <h1 class="text-3xl font-medium text-center text-green-600">Checkout Now :</h1>
+
+    <form class=" bg-slate-50 md:w-1/2 mx-auto mt-10 p-10 shadow-lg border" [formGroup]="paymentForm">
+
+
+
+
+
+
+
+
+      <div class="mb-3">
+        <label for="Details" class="block mb-2 text-sm font-medium text-gray-900 ">Details</label>
+        <input type="text" formControlName="details" id="Details"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  ">
+
+
+
+
+        @let detailsControl = paymentForm.get("details");
+
+        @if(detailsControl?.errors && detailsControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+
+              @if(detailsControl?.getError('required') && detailsControl?.touched){
+              <li>Details is required</li>
+              }
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div class="mb-3">
+        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">User Phone</label>
+        <input type="tel" formControlName="phone" id="phone"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  ">
+
+
+
+
+        @let phoneControl = paymentForm.get("phone");
+
+        @if(phoneControl?.errors && phoneControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+
+              @if(phoneControl?.getError('required') && phoneControl?.touched){
+              <li>Phone is required</li>
+              }@else if (phoneControl?.getError('pattern') && phoneControl?.touched) {
+              <li>Phone is not valid</li>
+
+              }
+
+
+
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 ">User city</label>
+        <input type="text" formControlName="city" id="city"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  ">
+
+
+
+
+        @let cityControl = paymentForm.get("city");
+
+        @if(cityControl?.errors && cityControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+
+              @if(cityControl?.getError('required') && cityControl?.touched){
+              <li>city is required</li>
+              }
+
+
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+
+      </div>
+
+
+      <div class="flex items-center justify-between">
+
+        <button (click)="submitOnlinePaymentForm()" [disabled]="iscalingApi" type="submit"
+          class="text-white bg-green-600 rounded-md  px-5 py-2.5 text-center">
+         Online Payment
+          @if(iscalingApi){
+          <i class="fa fa-spin fa-spinner ms-2 mt-1"></i>
+          }
+
+        </button>
+
+
+        <button (click)="submitCashPaymentForm()" [disabled]="iscalingApi" type="submit"
+        class="text-white bg-green-600 rounded-md  px-5 py-2.5 text-center">
+       Cash Payment
+        @if(iscalingApicash){
+        <i class="fa fa-spin fa-spinner ms-2 mt-1"></i>
+        }
+
+      </button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>
+
+
+  </div>
+</section>

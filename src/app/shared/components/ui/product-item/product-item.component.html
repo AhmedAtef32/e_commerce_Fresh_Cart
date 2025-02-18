@@ -1,0 +1,37 @@
+<div
+  class="max-w-sm bg-white border group border-main relative overflow-hidden hover:shadow-main transition-all duration-300 rounded-lg shadow-sm   h-[520px]">
+  <div class="card__img relative ">
+    <img class="rounded-t-lg w-full object-contain h-[350px] " [src]="product.imageCover" alt="" />
+    <div
+      class="cart__icon flex   group-hover:top-[60%] transition-all duration-1000  gap-2 absolute top-[100%] right-[50%] translate-x-1/2 translate-y-1/2">
+      <a class="bg-[#E4E4E4] size-12 text-main text-center rounded-s-full"><i
+          class="cursor-pointer fa-regular fa-heart   mt-3 text-[25px]"></i></a>
+      <a (click)="addProdctToCart(product._id)" class="bg-[#E4E4E4] size-12 text-main text-center"><i
+          class="cursor-pointer fa-solid fa-cart-shopping mt-3 text-[25px]"></i></a>
+      <a [routerLink]="['/product-detalis', product.id]" class="bg-[#E4E4E4] size-12 text-main text-center rounded-e-full"> <i
+          class="cursor-pointer fa-regular fa-eye mt-3 text-[25px]"></i></a>
+    </div>
+  </div>
+  <div class="p-5 relative z-20 bg-[white]">
+    <p class="mb-3 text-sm font-normal text-main  text-end"> {{product.category.name}} </p>
+    <h5 class="mb-2 text-2xl font-bold   "> {{product.title | term : 2}} </h5>
+
+    <div class="pt-3 relative z-20 bg-[white]">
+      <div class="flex justify-between flex-wrap items-center">
+        <h5 class="mb-2 text-md font-bold  ">{{product.price | currency :
+          'GBP'}}</h5>
+        <p class="mb-3 font-normal "><i class="fa-solid fa-star text-[yellow]"></i>
+          {{product.ratingsAverage}} </p>
+      </div>
+
+    </div>
+  </div>
+  @if(product.ratingsAverage >= 4.8){
+  <span class="px-5 py-2 bg-main text-[white] absolute top-2 left-[0%] rotate-90 rounded-e-full">
+    sale</span>
+
+  }
+
+
+
+</div>

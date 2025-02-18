@@ -1,0 +1,12 @@
+<section class="mt-6">
+  <owl-carousel-o [options]="customOptions">
+
+    @for (popularCategorie of popularCategories; track $index) {
+
+      <ng-template carouselSlide [id]="popularCategorie._id">
+        <img [src]="popularCategorie.image" class="h-[300px]" [alt]="popularCategorie.name" [title]="popularCategorie.name">
+      </ng-template>
+    }
+
+  </owl-carousel-o>
+</section>

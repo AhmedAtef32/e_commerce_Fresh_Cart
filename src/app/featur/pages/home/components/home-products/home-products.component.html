@@ -1,0 +1,28 @@
+<section class="my-8">
+  <div class="container">
+    <header class="Featured__header relative mb-24">
+      <h3 class=" text-3xl text-center font-bold text-[36px] text-secondary ">Featured Product</h3>
+      <p class="absolute top-[200%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 p-40 "><i class="fa-solid fa-certificate text-[30px] text-main"></i></p>
+    </header>
+
+    <div class="input__Search md:w-[50%] mx-auto my-6 relative z-50">
+      <input class="p-2 rounded-lg  w-full" [(ngModel)]="textSearch" type="text" placeholder="Search...">
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-5">
+     @for (product of allproducts.slice(0, 12) | findPRoduct : textSearch ; track product.id) {
+      <app-product-item [product]="product"></app-product-item>
+     }
+
+     @defer (on interaction(show)) {
+      @for (product of allproducts.slice(12) | findPRoduct : textSearch; track $index) {
+        <app-product-item [product]="product"></app-product-item>
+       }
+     }@placeholder {
+      <p class="flex justify-center mt-4"><button #show class="text-2xl font-bold bg-main text-[white] p-4 rounded-lg ">Show more</button></p>
+     }
+
+    </div>
+
+  </div>
+</section>

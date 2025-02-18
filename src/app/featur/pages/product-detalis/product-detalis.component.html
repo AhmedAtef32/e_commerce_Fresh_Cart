@@ -1,0 +1,35 @@
+<section class="mt-10">
+  <div class="container">
+      <div class="flex items-center flex-wrap justify-center gap-4">
+
+        <div class="w-full md:w-1/4">
+          <div class="img-product">
+            <owl-carousel-o [options]="customOptions">
+
+            @for (sliderimg of sliderimgs; track $index) {
+              <ng-template carouselSlide >
+                <img [src]="sliderimg" [alt]="sliderimg" >
+              </ng-template>
+            }
+
+            </owl-carousel-o>
+          </div>
+        </div>
+
+        <div class="w-full md:w-2/4">
+          <h2 class="py-2 text-main">{{product?.title}}</h2>
+          <h3 class="py-2 text-secondary">{{product?.description}}</h3>
+          <h4 class="py-2">{{product?.slug}}</h4>
+          <div class="flex items-center flex-wrap justify-between py-2">
+            <p> {{product?.price  | currency :'GBP'}} </p>
+            <p> <i class="fa fa-star text-[yellow]"></i> {{product?.ratingsAverage}} </p>
+          </div>
+         <div class="flex items-center  justify-between py-2 gap-5">
+          <button (click)="addTocart(product?.id!)" class="w-full p-2 grow bg-main text-[white] rounded-md"><i class="fa-solid fa-cart-shopping"></i> Add To Cart </button>
+          <i class="fa-regular fa-heart text-[35px] text-main cursor-pointer"></i>
+         </div>
+        </div>
+
+      </div>
+  </div>
+</section>

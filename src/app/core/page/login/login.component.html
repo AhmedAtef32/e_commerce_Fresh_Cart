@@ -1,0 +1,134 @@
+<section class="py-10">
+  <div class="container">
+    <h1 class="text-3xl font-semibold text-center text-main">Login Now :</h1>
+
+    <form class=" bg-slate-50 md:w-1/2 mx-auto mt-10 p-10 shadow-lg border" [formGroup]="loginForm"
+      (ngSubmit)="submitLoginForm()">
+
+
+
+
+
+
+
+
+      <div class="mb-3">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">User Email</label>
+        <input type="email" formControlName="email" id="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  ">
+
+
+
+
+        @let emailControl = loginForm.get("email");
+
+        @if(emailControl?.errors && emailControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+
+              @if(emailControl?.getError('required') && emailControl?.touched){
+              <li>Email is required</li>
+              }@else if (emailControl?.getError('email') && emailControl?.touched) {
+              <li>Email is not valid</li>
+
+              }
+
+
+
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div class="mb-3">
+        <label for="Password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+        <input type="password" formControlName="password" id="Password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5  ">
+
+
+
+
+        @let passwordControl = loginForm.get("password");
+
+        @if(passwordControl?.errors && passwordControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+
+              @if(passwordControl?.getError('required') && passwordControl?.touched){
+              <li>Password is required</li>
+              }@else if (passwordControl?.getError('pattern') && passwordControl?.touched) {
+              <li>Password is not valid</li>
+
+              }
+
+
+
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+
+      </div>
+
+
+      <div class="flex items-center justify-between">
+        <a routerLink="/forget" role="button" class="text-sm text-green-600 hover:underline">Forget Password ?</a>
+
+        <button [disabled]="iscalingApi" type="submit"
+          class="text-white bg-green-600 rounded-md  px-5 py-2.5 text-center">
+          Sign in
+
+          @if(iscalingApi){
+          <i class="fa fa-spin fa-spinner ms-2 mt-1"></i>
+          }
+
+        </button>
+      </div>
+
+
+
+      @if(sussessRegister){
+      <p class="bg-green-500 p-3 text-center text-white mt-2"> Susses </p>
+
+      }
+
+      @if(falidRegister){
+      <p class="bg-red-500 p-3 text-center text-white mt-2"> {{falidRegister}} </p>
+
+      }
+
+
+
+
+
+
+
+
+
+    </form>
+
+
+  </div>
+</section>
