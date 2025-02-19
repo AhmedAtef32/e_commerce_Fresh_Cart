@@ -22,25 +22,28 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   this._cartService.cartnumber.subscribe((res) => this.cartnumber = res);
 
-
+  if(this.isAuth){
     this.getcartData();
+  }
 
 
   }
 
 
   getcartData(){
-    if(this._router.url.includes('login')|| this._router.url.includes('register')){
 
 
-    }else{
+
       this._cartService.getAllCart().subscribe({
         next: (res)=>{
           this._cartService.cartnumber.next(res.numOfCartItems);
         }
       });
+
     }
 
-  }
+
+
+
 
 }

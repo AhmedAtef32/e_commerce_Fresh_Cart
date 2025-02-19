@@ -35,4 +35,18 @@ export class AuthService {
     this._router.navigate(["/login"]);
 
   }
+
+  verifyEmail(data:object) :Observable<any>{
+    return this._httpClient.post(`${environment.baseUrl}/api/v1/auth/forgotPasswords`,data)
+  }
+
+  verifyCode(data:object) :Observable<any>{
+    return this._httpClient.post(`${environment.baseUrl}/api/v1/auth/verifyResetCode`,data)
+  }
+
+  resetPassword(data:object) :Observable<any>{
+    return this._httpClient.put(`${environment.baseUrl}/api/v1/auth/resetPassword`,data)
+  }
+
+
 }

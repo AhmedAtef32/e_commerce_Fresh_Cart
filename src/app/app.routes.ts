@@ -9,6 +9,7 @@ export const routes: Routes = [
     {path:"" , redirectTo:"register",pathMatch:"full"},
     {path:"register" , loadComponent: ()=> import("./core/page/register/register.component").then(c=>c.RegisterComponent)},
     {path:"login" , loadComponent: ()=> import("./core/page/login/login.component").then(c=>c.LoginComponent)},
+    {path:"forget" , loadComponent: ()=> import("./core/page/forget-password/forget-password.component").then(c=>c.ForgetPasswordComponent)},
   ]},
 
   {path:"" , canActivate:[notLoggedGuard]  , loadComponent: ()=> import("./core/layout/blank/blank.component").then(c=>c.BlankComponent), children: [
