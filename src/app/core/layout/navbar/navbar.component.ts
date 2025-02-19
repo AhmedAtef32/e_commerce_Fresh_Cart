@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../../featur/services/cart/cart.service';
 
@@ -15,23 +15,32 @@ export class NavbarComponent implements OnInit {
    readonly  _authService= inject(AuthService);
 
   private readonly  _cartService= inject(CartService);
+  private readonly  _router= inject(Router);
 
   cartnumber:number = 0;
 
   ngOnInit(): void {
   this._cartService.cartnumber.subscribe((res) => this.cartnumber = res);
 
+
     this.getcartData();
+
 
   }
 
 
   getcartData(){
-    this._cartService.getAllCart().subscribe({
-      next: (res)=>{
-        this._cartService.cartnumber.next(res.numOfCartItems);
-      }
-    });
+    if(this._router.url.includes('login')|| this._router.url.includes('register')){
+
+
+    }else{
+      this._cartService.getAllCart().subscribe({
+        next: (res)=>{
+          this._cartService.cartnumber.next(res.numOfCartItems);
+        }
+      });
+    }
+
   }
 
 }
