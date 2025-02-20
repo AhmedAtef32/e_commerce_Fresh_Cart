@@ -9,14 +9,14 @@
       <input class="p-2 rounded-lg  w-full" [(ngModel)]="textSearch" type="text" placeholder="Search...">
     </div>
 
-    <div class="grid md:grid-cols-4 gap-5">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5  ">
      @for (product of allproducts.slice(0, 12) | findPRoduct : textSearch ; track product.id) {
-      <app-product-item [product]="product"></app-product-item>
+      <app-product-item [WishIds]="WishlistIds" [product]="product"></app-product-item>
      }
 
      @defer (on interaction(show)) {
       @for (product of allproducts.slice(12) | findPRoduct : textSearch; track $index) {
-        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [WishIds]="WishlistIds" [product]="product"></app-product-item>
        }
      }@placeholder {
       <p class="flex justify-center mt-4"><button #show class="text-2xl font-bold bg-main text-[white] p-4 rounded-lg ">Show more</button></p>

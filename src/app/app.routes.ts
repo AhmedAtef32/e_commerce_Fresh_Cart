@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import path from 'path';
 import { isLoggedGuard } from './core/guards/is-logged.guard';
 import { notLoggedGuard } from './core/guards/not-logged.guard';
 

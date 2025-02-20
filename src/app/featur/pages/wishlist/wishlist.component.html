@@ -1,1 +1,84 @@
-<p>wishlist works!</p>
+<section class="pt-10 py-5">
+  <div class="container">
+
+    <h1 class="text-2xl font-semibold text-gray-900 dark:text-white sm:text-2xl py-4">My Wish List :</h1>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm  rtl:text-right text-gray-500 dark:text-gray-400 text-center">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-16 py-3">
+              <span class="sr-only">Image</span>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Product
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Price
+            </th>
+            <th scope="col" class="px-6 py-3">
+             Delete
+            </th>
+            <th scope="col" class="px-6 py-3">
+             ADD to Cart
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @for (wishListItem of wishListItems; track wishListItem.id) {
+            <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <td class="p-4">
+              <img  [src]="wishListItem.imageCover" class="w-16 mx-auto md:w-32 max-w-full max-h-full"
+                alt="Apple Watch">
+            </td>
+            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+             {{wishListItem.title | term : 2}}
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center justify-center text-main font-semibold">
+                {{wishListItem.price | currency:'GBP'}}
+              </div>
+            </td>
+
+            <td class="px-6 py-4 text-center">
+
+              <button (click)="removeProductFromWishlist(wishListItem.id)" class="button mx-auto block" type="button">
+                <span class="button__text">Delete</span>
+                <span class="button__icon"><svg class="svg" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <title></title>
+                    <path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
+                      style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                    <line style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" x1="80"
+                      x2="432" y1="112" y2="112"></line>
+                    <path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
+                      style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                    <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                      x1="256" x2="256" y1="176" y2="400"></line>
+                    <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                      x1="184" x2="192" y1="176" y2="400"></line>
+                    <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                      x1="328" x2="320" y1="176" y2="400"></line>
+                  </svg></span>
+              </button>
+
+            </td>
+
+            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+              <button (click)="addToCart(wishListItem.id)" class=" p-3 grow bg-main text-[white] rounded-md"><i class="fa-solid fa-cart-shopping"></i>
+                Add
+                To Cart </button>
+            </td>
+
+          </tr>
+          }
+
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>

@@ -1,14 +1,19 @@
 <div
-  class="max-w-sm bg-white border group border-main relative overflow-hidden hover:shadow-main transition-all duration-300 rounded-lg shadow-sm   h-[520px]">
+  class="max-w-sm mx-auto bg-white border group border-main relative overflow-hidden hover:shadow-main transition-all duration-300 rounded-lg shadow-sm   h-[520px]">
   <div class="card__img relative ">
     <img class="rounded-t-lg w-full object-contain h-[350px] " [src]="product.imageCover" alt="" />
     <div
       class="cart__icon flex   group-hover:top-[60%] transition-all duration-1000  gap-2 absolute top-[100%] right-[50%] translate-x-1/2 translate-y-1/2">
-      <a class="bg-[#E4E4E4] size-12 text-main text-center rounded-s-full"><i
-          class="cursor-pointer fa-regular fa-heart   mt-3 text-[25px]"></i></a>
-      <a (click)="addProdctToCart(product._id)" class="bg-[#E4E4E4] size-12 text-main text-center"><i
+      <a (click)="addProductToWishlist(product._id)"
+     [class]="{
+      'text-[red]': WishIds.includes(product._id),
+      'text-[white]': !WishIds.includes(product._id),
+     }"
+      class="bg-main size-12  text-center rounded-s-full"><i
+        class="cursor-pointer fa-solid fa-heart   mt-3 text-[25px]"></i></a>
+      <a (click)="addProdctToCart(product._id)" class="bg-main size-12 text-white text-center"><i
           class="cursor-pointer fa-solid fa-cart-shopping mt-3 text-[25px]"></i></a>
-      <a [routerLink]="['/product-detalis', product.id]" class="bg-[#E4E4E4] size-12 text-main text-center rounded-e-full"> <i
+      <a [routerLink]="['/product-detalis', product.id]" class="bg-main size-12 text-white text-center rounded-e-full"> <i
           class="cursor-pointer fa-regular fa-eye mt-3 text-[25px]"></i></a>
     </div>
   </div>

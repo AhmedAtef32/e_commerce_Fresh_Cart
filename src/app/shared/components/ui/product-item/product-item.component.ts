@@ -5,6 +5,7 @@ import { CurrencyPipe } from '@angular/common';
 import { TermPipe } from '../../../../core/pipe/term.pipe';
 import { CartService } from '../../../../featur/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { WishListService } from '../../../../featur/services/wishlist/wish-list.service';
 
 @Component({
   selector: 'app-product-item',
@@ -15,9 +16,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductItemComponent {
 
   @Input({required: true}) product!: Allproducts;
+  @Input({required: true}) WishIds!: string[];
 
   private readonly _cartService = inject(CartService);
   private readonly _toastrService = inject(ToastrService);
+  private readonly _wishListService = inject(WishListService);
+
 
   addProdctToCart(id: string) {
     this._cartService.addToCart(id).subscribe({
@@ -30,6 +34,27 @@ export class ProductItemComponent {
       }
     }
     );
+  }
+
+  addProductToWishlist(id:string) {
+    if(this.WishIds.includes(id)) {
+      this._wishListService.removeProductFromWishlist(id).subscribe({
+        next : (res:any) => {
+          this._toastrService.success(res.message, "Fresh Cart");
+          this._wishListService.wishListNumber.next(res.data.length);
+          this.WishIds = res.data;
+        }
+      })
+    }else{
+      this._wishListService.addProductToWishlist(id).subscribe({
+        next : (res) => {
+          this._toastrService.success(res.message, "Fresh Cart");
+          this._wishListService.wishListNumber.next(res.data.length);
+          this.WishIds = res.data;
+        }
+       });
+    }
+
   }
 
 }

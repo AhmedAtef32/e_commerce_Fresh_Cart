@@ -4,6 +4,7 @@ import { ProductItemService } from '../../../../../shared/services/products/prod
 import { Allproducts } from '../../../../../shared/interfaces/allproducts/allproducts';
 import { FormsModule } from '@angular/forms';
 import { FindPRoductPipe } from '../../../../../core/pipe/find-product.pipe';
+import { WishListService } from '../../../../services/wishlist/wish-list.service';
 
 @Component({
   selector: 'app-home-products',
@@ -14,12 +15,14 @@ import { FindPRoductPipe } from '../../../../../core/pipe/find-product.pipe';
 export class HomeProductsComponent implements OnInit {
 
   private readonly _productItemService = inject(ProductItemService);
+  private readonly _wishListService = inject(WishListService);
 
   allproducts: Allproducts[] = [];
-
+  WishlistIds:string[] = [];
   textSearch : string = "";
   ngOnInit(): void {
     this.getAllProducts();
+    this.getWishListItems();
   }
 
   getAllProducts(){
@@ -31,6 +34,18 @@ export class HomeProductsComponent implements OnInit {
         console.log(err);
       },
     })
+  }
+
+
+  getWishListItems(){
+    this._wishListService.GetUserWishlist().subscribe({
+      next : (res : any) =>{
+        for (var i = 0; i < res.count; i++) {
+
+          this.WishlistIds.push(res.data[i].id);
+        }
+    }
+   })
   }
 
 }
