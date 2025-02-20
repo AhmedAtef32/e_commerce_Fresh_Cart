@@ -55,9 +55,7 @@ export class ProductDetalisComponent {
     this._cartService.addToCart(id).subscribe({
       next: (res) => {
         this._cartService.cartnumber.next(res.numOfCartItems)
-        this._toastrService.success(res.data.message, "Fresh Cart");
-        console.log(res);
-        console.log(this.WishDataIDs)
+        this._toastrService.success(res.message, "Fresh Cart");
       },
 
     })
