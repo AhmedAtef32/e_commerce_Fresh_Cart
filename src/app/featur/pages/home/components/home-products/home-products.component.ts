@@ -44,6 +44,7 @@ export class HomeProductsComponent implements OnInit {
 
           this.WishlistIds.push(res.data[i].id);
         }
+        this._wishListService.wishIDs = this.WishlistIds;
     }
    })
   }

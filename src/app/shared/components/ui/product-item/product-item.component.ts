@@ -23,6 +23,7 @@ export class ProductItemComponent {
   private readonly _wishListService = inject(WishListService);
 
 
+
   addProdctToCart(id: string) {
     this._cartService.addToCart(id).subscribe({
       next : (res) => {
@@ -43,6 +44,8 @@ export class ProductItemComponent {
           this._toastrService.success(res.message, "Fresh Cart");
           this._wishListService.wishListNumber.next(res.data.length);
           this.WishIds = res.data;
+          this._wishListService.wishIDs = this.WishIds;
+
         }
       })
     }else{
@@ -51,6 +54,7 @@ export class ProductItemComponent {
           this._toastrService.success(res.message, "Fresh Cart");
           this._wishListService.wishListNumber.next(res.data.length);
           this.WishIds = res.data;
+          this._wishListService.wishIDs = this.WishIds;
         }
        });
     }

@@ -52,6 +52,13 @@ export class NavbarComponent implements OnInit {
       this._wishListService.GetUserWishlist().subscribe({
         next: (res : any) =>{
           this._wishListService.wishListNumber.next(res.count);
+          console.log(res);
+          for (var i = 0; i < res.count; i++) {
+
+            this._wishListService.wishIDs.push(res.data[i].id);
+          }
+          console.log(this._wishListService.wishIDs);
+
         }
       })
     }

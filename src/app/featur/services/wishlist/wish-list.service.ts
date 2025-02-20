@@ -12,7 +12,7 @@ export class WishListService {
   private readonly _httpClient = inject(HttpClient);
 
   wishListNumber: BehaviorSubject<number> = new BehaviorSubject(0);
-
+  wishIDs: string[] = [];
   addProductToWishlist(id:string):Observable<any>{
    return  this._httpClient.post(`${environment.baseUrl}/api/v1/wishlist`,
       {

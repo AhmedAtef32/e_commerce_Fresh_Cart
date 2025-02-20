@@ -26,7 +26,11 @@
           </div>
          <div class="flex items-center  justify-between py-2 gap-5">
           <button (click)="addTocart(product?.id!)" class="w-full p-2 grow bg-main text-[white] rounded-md"><i class="fa-solid fa-cart-shopping"></i> Add To Cart </button>
-          <i class="fa-regular fa-heart text-[35px] text-main cursor-pointer"></i>
+          <i (click)="add_And_remove_Wishlist(product?.id!)"
+          [class]="{
+            'text-[red]': WishDataIDs.includes(product?.id!),
+          }"
+          class="fa-solid fa-heart text-[35px]  cursor-pointer"></i>
          </div>
         </div>
 
