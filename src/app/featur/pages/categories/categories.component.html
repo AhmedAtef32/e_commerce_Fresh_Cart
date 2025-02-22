@@ -1,1 +1,35 @@
-<p>categories works!</p>
+<section class="pb-12 pt-24">
+  <div class="container">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      @for(category of categoriesData ; track $index){
+        <div class="category-card shadow-md rounded-lg hover:shadow-main transition duration-300 ease-in-out pb-7">
+          <div class="img-category cursor-pointer" (click)="getSpecificCatergory(category._id)"  (click)="categoryName=category.name">
+            <img class="h-[250px] object-cover w-full" [src]="category.image" [alt]="category.name">
+          </div>
+          <div class="text-center text-main mt-5">
+            <h3 class="text-xl font-bold"> {{category.name}} </h3>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    @if(specificCatergory.length !== 0){
+      <div class="mt-12">
+        <h2 class="text-center text-3xl font-bold"> {{categoryName}} </h2>
+        <ul class="grid  md:grid-cols-2 lg:grid-cols-3  gap-5 py-5">
+
+          @for (catergory of specificCatergory ; track $index) {
+            <li class="py-2 text-2xl font-bold text-black border border-secondary text-center rounded-md shadow-md hover:shadow-main transition-all duration-300 ease-in-out"> {{catergory.name}} </li>
+
+          }
+
+
+        </ul>
+      </div>
+    }
+
+
+
+  </div>
+</section>

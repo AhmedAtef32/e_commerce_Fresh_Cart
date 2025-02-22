@@ -12,7 +12,7 @@ export class OrderService {
   private readonly _httpClient = inject(HttpClient);
 
    specialChar:string = '#';
-   encodedChar:string = encodeURIComponent( this.specialChar); // Converts "#" to "%23"
+   encodedChar:string = encodeURIComponent( this.specialChar);
 
 
    onlinePayment(data:object , cartId:string): Observable<any> {

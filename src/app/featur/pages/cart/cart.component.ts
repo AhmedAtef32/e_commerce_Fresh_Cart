@@ -18,7 +18,8 @@ export class CartComponent implements OnInit ,OnDestroy {
   private readonly _toastrService = inject(ToastrService)
 
 
-  cartInfo:Cart = {} as Cart
+  cartInfo:Cart = {} as Cart ;
+  cartInfoLength:number = 0
   subGetAllCarts!:Subscription;
   ngOnInit(): void {
     this.getAllCarts();
@@ -28,8 +29,8 @@ export class CartComponent implements OnInit ,OnDestroy {
   this.subGetAllCarts =  this._cartService.getAllCart().subscribe({
       next: (res)=>{
         this.cartInfo = res.data;
-
         console.log(this.cartInfo);
+        this.cartInfoLength = this.cartInfo.products.length
       }
     })
   }
@@ -52,6 +53,7 @@ export class CartComponent implements OnInit ,OnDestroy {
         this.cartInfo = res.data;
         this._cartService.cartnumber.next(res.numOfCartItems);
         this._toastrService.success(res.status , "Fresh Cart");
+        this.cartInfoLength = this.cartInfo.products.length
       }
     })
   }
@@ -62,6 +64,7 @@ export class CartComponent implements OnInit ,OnDestroy {
         this.cartInfo = {} as Cart;
         this._cartService.cartnumber.next(0);
         this._toastrService.success(res.message , "Fresh Cart");
+        this.cartInfoLength = 0;
       }
     })
   }
