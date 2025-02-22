@@ -55,7 +55,7 @@ export class CheckoutComponent implements OnInit {
           next: (res) => {
             if(res.status == "success"){
               console.log(res);
-              open(res.session.url , "_self");
+              // open(res.session.url , "_self");
             }
             this.iscalingApi = false;
           },error: (err) => {
