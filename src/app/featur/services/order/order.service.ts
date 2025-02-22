@@ -11,6 +11,8 @@ export class OrderService {
   constructor() { }
   private readonly _httpClient = inject(HttpClient);
 
+   specialChar:string = '#';
+   encodedChar:string = encodeURIComponent( this.specialChar); // Converts "#" to "%23"
   cashPayment(data:object , cartId:string): Observable<any> {
     return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/${cartId}`, {
       shippingAddress : data
@@ -18,7 +20,7 @@ export class OrderService {
   }
 
   onlinePayment(data:object , cartId:string): Observable<any> {
-    return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`, {
+    return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200/${this.encodedChar}`, {
       shippingAddress : data
     });
   }

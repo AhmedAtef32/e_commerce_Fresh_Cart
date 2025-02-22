@@ -13,7 +13,7 @@ import { spinnerInterceptor } from './core/interceptor/spineer/spinner.intercept
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-     provideRouter(routes , withViewTransitions() ,  withInMemoryScrolling({scrollPositionRestoration: 'top'})),
+     provideRouter(routes , withViewTransitions() ,withHashLocation(),  withInMemoryScrolling({scrollPositionRestoration: 'top'})),
      provideClientHydration(withEventReplay()),
      provideHttpClient(withFetch(), withInterceptors([headerInterceptor,errorsInterceptor,spinnerInterceptor])),
      provideAnimations(),
