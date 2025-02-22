@@ -5,6 +5,7 @@ import { Allproducts } from '../../../../../shared/interfaces/allproducts/allpro
 import { FormsModule } from '@angular/forms';
 import { FindPRoductPipe } from '../../../../../core/pipe/find-product.pipe';
 import { WishListService } from '../../../../services/wishlist/wish-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-products',
@@ -16,6 +17,7 @@ export class HomeProductsComponent implements OnInit {
 
   private readonly _productItemService = inject(ProductItemService);
   private readonly _wishListService = inject(WishListService);
+   readonly _router = inject(Router);
 
   allproducts: Allproducts[] = [];
   WishlistIds:string[] = [];

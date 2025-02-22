@@ -17,7 +17,9 @@ export const appConfig: ApplicationConfig = {
      provideClientHydration(withEventReplay()),
      provideHttpClient(withFetch(), withInterceptors([headerInterceptor,errorsInterceptor,spinnerInterceptor])),
      provideAnimations(),
-     provideToastr(),
+     provideToastr({
+      preventDuplicates: true,
+     }),
      importProvidersFrom(NgxSpinnerModule)
     ]
 };
