@@ -13,15 +13,19 @@ export class OrderService {
 
    specialChar:string = '#';
    encodedChar:string = encodeURIComponent( this.specialChar); // Converts "#" to "%23"
+
+
+   onlinePayment(data:object , cartId:string): Observable<any> {
+    return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200/${this.encodedChar}`, {
+      shippingAddress : data
+    });
+  }
+
+
   cashPayment(data:object , cartId:string): Observable<any> {
     return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/${cartId}`, {
       shippingAddress : data
     });
   }
 
-  onlinePayment(data:object , cartId:string): Observable<any> {
-    return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200/${this.encodedChar}`, {
-      shippingAddress : data
-    });
-  }
 }
