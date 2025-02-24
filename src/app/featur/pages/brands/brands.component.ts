@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { BrandsService } from '../../../shared/services/brands/brands.service';
 import { Brand } from '../../../shared/interfaces/allproducts/allproducts';
+import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-brands',
@@ -12,10 +13,11 @@ export class BrandsComponent implements OnInit {
 
   private readonly _brandsService = inject(BrandsService);
   allBrands!: Brand[]
-
+  specificBrand!: Brand | null ;
   ngOnInit(): void {
 
     this.getBrands();
+
   }
 
 
@@ -26,6 +28,21 @@ export class BrandsComponent implements OnInit {
         console.log(this.allBrands);
       }
     });
+  }
+
+
+  getSpecificBrand(id:string){
+    this._brandsService.getSpecificbrand(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.specificBrand = res.data
+      }
+    })
+  }
+
+
+  removeBrandData(){
+    this.specificBrand = null ;
   }
 
 }

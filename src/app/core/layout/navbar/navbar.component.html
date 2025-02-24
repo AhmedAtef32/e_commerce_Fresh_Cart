@@ -38,7 +38,7 @@
             class="block py-2 px-3 text-gray-700  rounded-sm md:bg-transparent transition-all font-bold  "
             aria-current="page">categories</a>
         </li>
-        
+
         <li>
           <a routerLink="/brands" routerLinkActive="!text-main"
             class="block py-2 px-3 text-gray-700  rounded-sm md:bg-transparent transition-all font-bold  "
@@ -76,9 +76,20 @@
         }@else {
 
           <li>
-            <a routerLink="/wishlist" routerLinkActive="!text-main"
+            <a routerLink="/allorders" routerLinkActive="!text-main"
               class="block py-2 px-3 text-gray-700  rounded-sm md:bg-transparent transition-all font-bold relative "
-              aria-current="page"><i class="fa-solid fa-heart text-[30px]"></i>
+              aria-current="page"><i class="fa-solid fa-truck-fast text-[25px]"></i>
+
+              <span class="bg-green-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg absolute top-[50%] left-0 "> {{OrdersNumber}} </span>
+
+            </a>
+          </li>
+
+
+          <li>
+            <a routerLink="/wishlist" routerLinkActive="!text-[red]"
+              class="block py-2 px-3 text-gray-700  rounded-sm md:bg-transparent transition-all font-bold relative "
+              aria-current="page"><i class="fa-solid fa-heart text-[25px]"></i>
               <span class="bg-green-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg absolute top-[50%] left-0 ">  {{wishNumber}} </span>
 
             </a>
@@ -88,7 +99,7 @@
         <li>
           <a routerLink="/cart" routerLinkActive="!text-main"
             class="block py-2 px-3 text-gray-700  rounded-sm md:bg-transparent transition-all font-bold relative "
-            aria-current="page"><i class="fa fa-shopping-cart text-[30px]"></i>
+            aria-current="page"><i class="fa fa-shopping-cart text-[25px]"></i>
             <span class="bg-green-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg absolute top-[50%] left-0 ">  {{cartnumber}} </span>
 
           </a>

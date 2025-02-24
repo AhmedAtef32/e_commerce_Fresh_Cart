@@ -23,7 +23,7 @@ ngOnInit(): void {
   getPopularCategories(){
   this.subGetPopularCategories =  this._popularCategoriesService.getPopularCategory().subscribe({
       next:(res)=>{
-       
+
         this.popularCategories=res.data;
       }
     })
@@ -37,7 +37,6 @@ ngOnInit(): void {
     autoplay: true,
     pullDrag: false,
     dots: false,
-    navSpeed: 700,
     navText: ['', ''],
     responsive: {
       0: {
@@ -53,7 +52,6 @@ ngOnInit(): void {
         items: 7
       }
     },
-    nav: true
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../services/order/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   private readonly _orderService = inject(OrderService);
   private readonly _toastrService = inject(ToastrService);
   private readonly _cartService = inject(CartService);
+  private readonly _router = inject(Router);
   paymentForm!:FormGroup;
   iscalingApi:boolean = false
   iscalingApicash:boolean = false
@@ -84,6 +85,10 @@ submitCashPaymentForm(){
           if(res.status == "success"){
             this._cartService.cartnumber.next(0);
             this._toastrService.success(res.status,"Fresh Cart");
+            setTimeout(()=>{
+              this._router.navigate(["/allorders"])
+            },500)
+            this._router.navigate(["/allorders"])
           }
           this.iscalingApicash = false;
         },error: (err) => {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../enviroments/enviroment';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
+import { UserId } from '../../interface/user ID/user-id';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
   private readonly _httpClient= inject(HttpClient);
   private readonly _router= inject(Router);
 
-  userData!:object;
+  userData!:UserId;
+  userId!:string;
   submitRegister(data:object):Observable<any>{
     return this._httpClient.post(`${environment.baseUrl}/api/v1/auth/signup`,data)
   }
@@ -25,7 +27,7 @@ export class AuthService {
 
   getUserData(){
     this.userData = jwtDecode(localStorage.getItem("userToken")!);
-    console.log(this.userData);
+    this.userId =this.userData.id;
   }
 
 

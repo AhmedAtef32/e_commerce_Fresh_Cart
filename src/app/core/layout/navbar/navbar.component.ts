@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../../featur/services/cart/cart.service';
 import { WishListService } from '../../../featur/services/wishlist/wish-list.service';
+import { OrderService } from '../../../featur/services/order/order.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,15 +14,15 @@ import { WishListService } from '../../../featur/services/wishlist/wish-list.ser
 export class NavbarComponent implements OnInit {
 
   @Input({required: true}) isAuth!: boolean;
-   readonly  _authService= inject(AuthService);
-    readonly  _wishListService= inject(WishListService);
-
+  readonly  _authService= inject(AuthService);
+  readonly  _wishListService= inject(WishListService);
+  private readonly  _orderService= inject(OrderService);
   private readonly  _cartService= inject(CartService);
   private readonly  _router= inject(Router);
 
   cartnumber:number = 0;
   wishNumber:number = 0;
-
+  OrdersNumber:number = 0;
   ngOnInit(): void {
 
   if(this.isAuth){
@@ -29,6 +30,11 @@ export class NavbarComponent implements OnInit {
     this.getWishData();
     this._cartService.cartnumber.subscribe((res) => this.cartnumber = res);
     this._wishListService.wishListNumber.subscribe((res) => this.wishNumber = res);
+    this._authService.getUserData();
+    this._orderService.ordersNumber.subscribe({
+      next : (res) => this.OrdersNumber = res
+    });
+    this.getOrderNumber();
   }
 
 
@@ -59,6 +65,15 @@ export class NavbarComponent implements OnInit {
           }
           console.log(this._wishListService.wishIDs);
 
+        }
+      })
+    }
+
+
+    getOrderNumber(){
+      this._orderService.getAllUserOrders(this._authService.userId).subscribe({
+        next: (res) => {
+          this._orderService.ordersNumber.next(res.length);
         }
       })
     }
