@@ -1,11 +1,11 @@
-<Section class="mb-10">
+<Section class="my-10">
   <div class="container">
     <h3 class="text-3xl text-center font-extrabold text-[36px] text-main pb-7">Our Brands :</h3>
     <owl-carousel-o [options]="brandOptions">
 
         @for (slide of allbrands; track $index) {
           <ng-template carouselSlide [id]="slide.name">
-            <img  class="h-[150px] w-[150px]" [src]="slide.image" [alt]="slide.name" [title]="slide.name">
+            <img  class="h-[150px] w-[150px] opacity-80 hover:opacity-100 transition-all duration-300 ease-in-out" [src]="slide.image" [alt]="slide.name" [title]="slide.name">
           </ng-template>
         }
 

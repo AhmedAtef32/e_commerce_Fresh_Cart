@@ -5,10 +5,11 @@ import { PopularCategoriesComponent } from "./components/popular-categories/popu
 import { IntroWebsiteComponent } from "./components/intro-website/intro-website.component";
 import { BrandSliderComponent } from "./components/brand-slider/brand-slider.component";
 import { ImgShowMoreComponent } from "./components/img-show-more/img-show-more.component";
+import { OffersHomeComponent } from "./components/offers-home/offers-home.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HomeProductsComponent, HomeOverviewComponent, PopularCategoriesComponent, IntroWebsiteComponent, BrandSliderComponent, ImgShowMoreComponent],
+  imports: [HomeProductsComponent, HomeOverviewComponent, PopularCategoriesComponent, IntroWebsiteComponent, BrandSliderComponent, ImgShowMoreComponent, OffersHomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

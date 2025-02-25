@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './shared/services/flowbite/flowbite.service';
 import { NgxSpinnerComponent } from 'ngx-spinner';
@@ -12,10 +12,10 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 export class AppComponent {
   title = 'Final_Project';
 
-  constructor(private flowbiteService: FlowbiteService) {}
+  private  _flowbiteService = inject(FlowbiteService)
 
   ngOnInit(): void {
-    this.flowbiteService.loadFlowbite(flowbite => {
+    this._flowbiteService.loadFlowbite(flowbite => {
       console.log('Flowbite loaded', flowbite);
     });
   }

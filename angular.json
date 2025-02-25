@@ -39,9 +39,7 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/square-jelly-box.css"
             ],
-            "scripts": [
-              "node_modules/flowbite/dist/flowbite.min.js"
-            ],
+            "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {

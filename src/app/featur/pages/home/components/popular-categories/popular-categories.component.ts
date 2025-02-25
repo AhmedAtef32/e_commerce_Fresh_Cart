@@ -37,16 +37,18 @@ ngOnInit(): void {
     autoplay: true,
     pullDrag: false,
     dots: false,
+    autoplayTimeout: 1000,
+    autoplaySpeed: 900,
     navText: ['', ''],
     responsive: {
       0: {
         items: 1
       },
       400: {
-        items: 3
+        items: 2
       },
       740: {
-        items: 5
+        items: 4
       },
       940: {
         items: 7

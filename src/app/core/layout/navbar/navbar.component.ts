@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../../featur/services/cart/cart.service';
 import { WishListService } from '../../../featur/services/wishlist/wish-list.service';
 import { OrderService } from '../../../featur/services/order/order.service';
+import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +24,13 @@ export class NavbarComponent implements OnInit {
   cartnumber:number = 0;
   wishNumber:number = 0;
   OrdersNumber:number = 0;
+
+
+
+
   ngOnInit(): void {
+
+
 
   if(this.isAuth){
     this.getcartData();

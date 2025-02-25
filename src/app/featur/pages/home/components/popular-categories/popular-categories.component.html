@@ -4,7 +4,12 @@
     @for (popularCategorie of popularCategories; track $index) {
 
       <ng-template carouselSlide [id]="popularCategorie._id">
-        <img [src]="popularCategorie.image" class="h-[300px]" [alt]="popularCategorie.name" [title]="popularCategorie.name">
+        <div class="rounded-lg hover:shadow-md hover:shadow-main transition-all duration-300 ease-in-out my-5">
+        <div class="mx-5 rounded-lg overflow-hidden ">
+          <img [src]="popularCategorie.image" class="h-[300px] w-full object-cover" [alt]="popularCategorie.name" [title]="popularCategorie.name">
+        </div>
+        <h3 class="text-center text-sm font-bold text-main">{{popularCategorie.name}}</h3>
+      </div>
       </ng-template>
     }
 
