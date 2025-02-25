@@ -56,7 +56,7 @@
 
 
       <ul
-        class="capitalize md:ms-auto flex flex-col p-4 text-center md:p-0 mt-0  border border-gray-100 border-t-0 rounded-b-lg   md:flex-row  rtl:space-x-reverse md:mt-0 md:border-0 ">
+        class="capitalize md:ms-auto flex flex-col p-4 text-center md:p-0 mt-0 items-center border border-gray-100 border-t-0 rounded-b-lg   md:flex-row  rtl:space-x-reverse md:mt-0 md:border-0 ">
 
 
 
@@ -105,13 +105,38 @@
           </a>
         </li>
 
-        <li>
+        <!-- <li>
           <button class="Btn"  (click)="_authService.logOut()">
 
             <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
 
             <div class="text">Logout</div>
           </button>
+        </li> -->
+
+
+        <li class="relative">
+
+<button (click)="toggleProfileMune(DropDown)"  class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-main dark:hover:text-main transition-all md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white" type="button">
+  <span class="sr-only">Open user menu</span>
+  <i class="fa-solid fa-user text-[25px]"></i>
+  <p class="ms-2"> {{_authService.userData.name}} </p>
+  <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+  </svg>
+  </button>
+
+  <div #DropDown class="z-10 hidden bg-[#F3F4F6] divide-y divide-gray-300 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-10" >
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+        <li>
+          <a routerLink="/setting" (click)="toggleProfileMune(DropDown)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+        </li>
+      </ul>
+      <div class="py-2">
+        <a role="button" (click)="_authService.logOut()" class="block px-4 py-2 text-sm text-[red] hover:underline dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+      </div>
+  </div>
+
         </li>
         }
 

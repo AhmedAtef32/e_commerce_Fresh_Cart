@@ -22,7 +22,6 @@ ngOnInit(): void {
     this._brandsService.getAllbrands().subscribe({
       next: (res) => {
         this.allbrands = res.data
-        console.log(this.allbrands);
       }
     })
   }
@@ -33,7 +32,7 @@ ngOnInit(): void {
     touchDrag: true,
     autoplay: true,
     autoplayTimeout: 1000,
-    autoplaySpeed: 500,     
+    autoplaySpeed: 500,
     pullDrag: false,
     dots: false,
     navText: ['', ''],

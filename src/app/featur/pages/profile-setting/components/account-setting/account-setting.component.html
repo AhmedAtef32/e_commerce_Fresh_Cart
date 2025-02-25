@@ -1,0 +1,111 @@
+<section>
+  <form [formGroup]="FormupdateUserData" (ngSubmit)="submiteUpdateUserData()">
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="name">Name :</label>
+      <input #name type="text" name="name" [(ngModel)]="name.value" id="name" formControlName="name" [readonly]="isreadonly" [class]="{'bg-opacity-10':isreadonly,'bg-white':!isreadonly}" class="bg-gray-100 border block border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [value]="userDetails?.name"   />
+
+      @let nameControl = FormupdateUserData.get("name");
+
+      @if(nameControl?.errors && nameControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 "
+        role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+           @if(nameControl?.getError('required') && nameControl?.touched){
+            <li>name is required</li>
+           }@else if (nameControl?.getError('minlength') && nameControl?.touched) {
+            <li>name must be at least 3 characters</li>
+
+           }@else if (nameControl?.getError('maxlength') && nameControl?.touched) {
+            <li>name must be at most 20 characters</li>
+
+           }
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+
+    </div>
+
+
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="name">Email :</label>
+
+      <input #email type="text" [(ngModel)]="email.value" name="email" formControlName="email" [readonly]="isreadonly" id="email" [class]="{'bg-opacity-10':isreadonly,'bg-white':!isreadonly}" class="bg-gray-100 border border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [value]="userDetails?.email" />
+
+      @let emailControl = FormupdateUserData.get("email");
+
+      @if(emailControl?.errors && emailControl?.touched ){
+      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 " role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+            @if(emailControl?.getError('required') && emailControl?.touched){
+            <li>Email is required</li>
+            }@else if (emailControl?.getError('email') && emailControl?.touched) {
+            <li>Email is not valid</li>
+
+            }
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+
+    </div>
+
+
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="phone">Phone :</label>
+      <input #phone type="text" id="phone" [(ngModel)]="phone.value" name="phone" [readonly]="isreadonly" formControlName="phone" [class]="{'bg-opacity-10':isreadonly,'bg-white':!isreadonly}" class="bg-gray-100 border border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-lg focus:ring-main   p-2.5  "  [value]="userDetails?.phone" />
+
+      @let phoneControl = FormupdateUserData.get("phone");
+
+      @if(phoneControl?.errors && phoneControl?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  mt-2 "
+        role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+           @if(phoneControl?.getError('required') && phoneControl?.touched){
+            <li>Phone is required</li>
+           }@else if (phoneControl?.getError('pattern') && phoneControl?.touched) {
+            <li>Phone is not valid</li>
+
+           }
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+
+    </div>
+
+    <div>
+      @if (!isreadonly) {
+
+        <button type="submit" class="bg-main text-white py-2 px-4 rounded ">Upadte</button>
+      }@else{
+
+        <button type="button"  (click)="isreadonly = false" class="bg-main text-white py-2 px-4 rounded">Edit</button>
+      }
+    </div>
+  </form>
+</section>

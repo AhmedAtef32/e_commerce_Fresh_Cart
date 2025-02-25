@@ -8,6 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { WishListService } from '../../services/wishlist/wish-list.service';
+import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-product-detalis',
@@ -23,13 +24,14 @@ export class ProductDetalisComponent {
   private readonly   _cartService = inject(CartService);
   private readonly   _toastrService= inject(ToastrService);
   private readonly  _wishListService= inject(WishListService);
-
   product:Allproducts| null = null;
 
   sliderimgs!:string[]
   WishDataIDs:string[] = this._wishListService.wishIDs
   id!:string
   ngOnInit(): void {
+
+
 
     this._activatedRoute.paramMap.subscribe({
       next:(res)=>{

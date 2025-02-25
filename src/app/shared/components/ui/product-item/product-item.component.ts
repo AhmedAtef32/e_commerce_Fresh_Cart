@@ -55,6 +55,7 @@ export class ProductItemComponent {
           this._wishListService.wishListNumber.next(res.data.length);
           this.WishIds = res.data;
           this._wishListService.wishIDs = this.WishIds;
+          console.log(res)
         }
        });
     }

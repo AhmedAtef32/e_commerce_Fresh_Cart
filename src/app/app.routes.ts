@@ -20,6 +20,11 @@ export const routes: Routes = [
     {path:"products" , loadComponent: ()=> import("./featur/pages/products/products.component").then(c=>c.ProductsComponent),title:"Product "},
     {path:"wishlist" , loadComponent: ()=> import("./featur/pages/wishlist/wishlist.component").then(c=>c.WishlistComponent),title:"Wishlist"},
     {path:"allorders" , loadComponent: ()=> import("./featur/pages/allorders/allorders.component").then(c=>c.AllordersComponent),title:"All Orders"},
+    {path:"setting" , loadComponent: ()=> import("./featur/pages/profile-setting/profile-setting.component").then(c=>c.ProfileSettingComponent),title:"Setting", children: [
+      {path:"" , redirectTo:"account-setting",pathMatch:"full"},
+      {path:"account-setting" , loadComponent: ()=> import("./featur/pages/profile-setting/components/account-setting/account-setting.component").then(c=>c.AccountSettingComponent)},
+      {path:"privacy-setting" , loadComponent: ()=> import("./featur/pages/profile-setting/components/privacy-setting/privacy-setting.component").then(c=>c.PrivacySettingComponent)},
+    ]},
     {path:"checkout/:id" , loadComponent: ()=> import("./featur/pages/checkout/checkout.component").then(c=>c.CheckoutComponent),title:"Checkout"},
     {path:"product-detalis/:id" , loadComponent: ()=> import("./featur/pages/product-detalis/product-detalis.component").then(c=>c.ProductDetalisComponent),title:"Product Detalis"},
     {path:"**", loadComponent: ()=> import("./featur/pages/not-found/not-found.component").then(c=>c.NotFoundComponent),title:"Not Found Page"}

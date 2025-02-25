@@ -50,5 +50,7 @@ export class AuthService {
     return this._httpClient.put(`${environment.baseUrl}/api/v1/auth/resetPassword`,data)
   }
 
-
+  updateUserData(data:object) : Observable<any>{
+   return this._httpClient.put(`https://ecommerce.routemisr.com/api/v1/users/updateMe/`,data);
+  }
 }

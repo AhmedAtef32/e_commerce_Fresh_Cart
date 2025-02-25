@@ -1,0 +1,20 @@
+<section>
+  <div class="container">
+      <h1 class="text-4xl font-bold text-center">Profile Setting :</h1>
+
+      <div class="flex flex-wrap  bg-[#F0F3F2] p-8 rounded mt-4 items-center">
+
+        <div class="w-full md:w-1/4">
+          <button routerLink="account-setting" routerLinkActive="!bg-main" class="bg-secondary text-white py-2 px-4 rounded inline-block w-full mb-4 ">Account Setting</button>
+          <button routerLink="privacy-setting" routerLinkActive="!bg-main" class="bg-secondary text-white py-2 px-4 rounded inline-block w-full mb-4">Privacy Setting</button>
+        </div>
+
+        <div class="w-full md:w-3/4 md:ps-11">
+          <router-outlet></router-outlet>
+        </div>
+
+
+      </div>
+
+  </div>
+</section>
