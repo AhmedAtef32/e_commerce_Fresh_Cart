@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../enviroments/enviroment';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
 import { UserId } from '../../interface/user ID/user-id';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,11 @@ export class AuthService {
   constructor() { }
   private readonly _httpClient= inject(HttpClient);
   private readonly _router= inject(Router);
+  private readonly _pLATFORM_ID= inject(PLATFORM_ID);
 
   userData!:UserId;
   userId!:string;
+  userName: BehaviorSubject<string> = new BehaviorSubject('');
   submitRegister(data:object):Observable<any>{
     return this._httpClient.post(`${environment.baseUrl}/api/v1/auth/signup`,data)
   }
@@ -26,8 +29,8 @@ export class AuthService {
   }
 
   getUserData(){
-    this.userData = jwtDecode(localStorage.getItem("userToken")!);
-    this.userId =this.userData.id;
+      this.userData = jwtDecode(localStorage.getItem("userToken")!);
+      this.userId =this.userData.id;
   }
 
 
@@ -51,6 +54,10 @@ export class AuthService {
   }
 
   updateUserData(data:object) : Observable<any>{
-   return this._httpClient.put(`https://ecommerce.routemisr.com/api/v1/users/updateMe/`,data);
+   return this._httpClient.put(`${environment.baseUrl}/api/v1/users/updateMe/`,data);
   }
+
+  updateUserPassword(data:object) : Observable<any>{
+    return this._httpClient.put(`${environment.baseUrl}/api/v1/users/changeMyPassword`,data);
+   }
 }

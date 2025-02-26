@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../../featur/services/cart/cart.service';
 import { WishListService } from '../../../featur/services/wishlist/wish-list.service';
 import { OrderService } from '../../../featur/services/order/order.service';
-import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +23,7 @@ export class NavbarComponent implements OnInit {
   cartnumber:number = 0;
   wishNumber:number = 0;
   OrdersNumber:number = 0;
-
+  username:string = ""
 
 
 
@@ -37,7 +36,7 @@ export class NavbarComponent implements OnInit {
     this.getWishData();
     this._cartService.cartnumber.subscribe((res) => this.cartnumber = res);
     this._wishListService.wishListNumber.subscribe((res) => this.wishNumber = res);
-    this._authService.getUserData();
+    this.getUserDetails();
     this._orderService.ordersNumber.subscribe({
       next : (res) => this.OrdersNumber = res
     });
@@ -49,10 +48,7 @@ export class NavbarComponent implements OnInit {
 
 
   getcartData(){
-
-
-
-      this._cartService.getAllCart().subscribe({
+     this._cartService.getAllCart().subscribe({
         next: (res)=>{
           this._cartService.cartnumber.next(res.numOfCartItems);
         }
@@ -88,6 +84,13 @@ export class NavbarComponent implements OnInit {
       mune.classList.toggle('hidden');
 
 
+    }
+
+    getUserDetails(){
+      this._authService.getUserData();
+      this._authService.userName.next(this._authService.userData.name);
+      this._authService.userName.subscribe((res) => this.username = res);
+      console.log(this.username);
     }
 
 

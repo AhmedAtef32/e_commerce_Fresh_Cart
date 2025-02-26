@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../core/services/auth/auth.service';
-import { UserId } from '../../../../../core/interface/user ID/user-id';
 import { UserService } from '../../../../services/user/user.service';
 import { UserDetails } from '../../../../interface/UserDetials/user-details';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
   templateUrl: './account-setting.component.html',
   styleUrl: './account-setting.component.scss'
 })
-export class AccountSettingComponent implements OnInit {
+export class AccountSettingComponent implements OnInit , OnDestroy {
 
   private readonly  _userService = inject(UserService);
   private readonly  _authService = inject(AuthService);
@@ -20,7 +19,11 @@ export class AccountSettingComponent implements OnInit {
   userID!:string;
   isreadonly:boolean = true
 
-
+  fakeUserData:object = {
+    name:this.userDetails.name,
+    email:"Fb0m9@example.com",
+    phone:this.userDetails.phone
+  }
 
 
   FormupdateUserData:FormGroup = new FormGroup({
@@ -44,7 +47,10 @@ export class AccountSettingComponent implements OnInit {
     if(this.FormupdateUserData.valid){
        this._authService.updateUserData(this.FormupdateUserData.value).subscribe({
          next: (res) => {
-           console.log(res)
+           if(res.message == "success"){
+             this.isreadonly = true;
+             this._authService.userName.next(res.user.name);
+           }
          }
        })
     }else{
@@ -60,5 +66,22 @@ export class AccountSettingComponent implements OnInit {
         console.log(this.userDetails)
       }
     });
+  }
+
+  editBtn(){
+    this.isreadonly = false;
+    this._authService.updateUserData(this.fakeUserData).subscribe({
+      next: (res) => {
+        console.log(res)
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+
+    if(this.isreadonly == false){
+
+      this.submiteUpdateUserData();
+    }
   }
 }

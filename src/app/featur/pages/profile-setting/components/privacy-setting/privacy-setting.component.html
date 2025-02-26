@@ -1,0 +1,112 @@
+
+<section >
+  <form [formGroup]="formUpdateLoggedPassword" (ngSubmit)="submiteFormUpdateLoggedPassword()">
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="currentPassword">Current Password :</label>
+      <input  type="password" name="currentPassword" formControlName="currentPassword"   id="currentPassword"   class="bg-gray-100 border block border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [class]="{'bg-opacity-10':isReadonly,'bg-white':!isReadonly}" placeholder="*******" [readOnly]="isReadonly"    />
+      @let currentPassword = formUpdateLoggedPassword.get('currentPassword');
+
+      @if(currentPassword?.errors && currentPassword?.touched ){
+      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  w-full md:w-1/2  mt-2 " role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+            @if(currentPassword?.getError('required') && currentPassword?.touched){
+            <li>currentPassword is required</li>
+            }@else if (currentPassword?.getError('pattern') && currentPassword?.touched) {
+            <li>currentPassword is not valid</li>
+            }
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="password"> Password :</label>
+      <input  type="password" name="password"  id="password" formControlName="password"  class="bg-gray-100 border block border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [class]="{'bg-opacity-10':isReadonly,'bg-white':!isReadonly}" placeholder="*******" [readOnly]="isReadonly"    />
+      @let password = formUpdateLoggedPassword.get('password');
+
+      @if(password?.errors && password?.touched ){
+      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  w-full md:w-1/2 mt-2 " role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+            @if(password?.getError('required') && password?.touched){
+            <li>password is required</li>
+            }@else if (password?.getError('pattern') && password?.touched) {
+            <li>currentPassword is not valid</li>
+            }
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="rePassword"> rePassword :</label>
+      <input  type="password" name="rePassword"  id="rePassword" formControlName="rePassword"  class="bg-gray-100 border block border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [class]="{'bg-opacity-10':isReadonly,'bg-white':!isReadonly}" placeholder="*******" [readOnly]="isReadonly"    />
+      @let rePassword = formUpdateLoggedPassword.get('rePassword');
+
+      @if(rePassword?.errors && rePassword?.touched ){
+      <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  w-full md:w-1/2  mt-2 " role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+
+
+            @if(rePassword?.getError('required') && rePassword?.touched){
+            <li>rePassword is required</li>
+            }
+
+
+
+
+
+          </ul>
+        </div>
+      </div>
+      }
+
+
+      @if(formUpdateLoggedPassword?.getError('notMatch') && rePassword?.touched ){
+        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  w-full md:w-1/2  mt-2 " role="alert">
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+
+              <li>password and rePassword not match</li>
+
+
+
+            </ul>
+          </div>
+        </div>
+        }
+
+
+    </div>
+    <div>
+      @if (isReadonly) {
+        <button type="button" (click)="editBtn()"   class="bg-main text-white py-2 px-4 rounded">Edit</button>
+
+      }@else{
+        <button type="submit" class="bg-main text-white py-2 px-4 rounded ">Upadte</button>
+
+      }
+    </div>
+
+  </form>
+</section>
