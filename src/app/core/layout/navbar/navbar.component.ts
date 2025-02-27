@@ -94,4 +94,8 @@ export class NavbarComponent implements OnInit {
     }
 
 
+    toggleNavbar(ulList:HTMLElement){
+
+      ulList.classList.toggle('hidden');
+    }
 }
