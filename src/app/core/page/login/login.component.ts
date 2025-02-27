@@ -24,7 +24,7 @@ private readonly _authService = inject(AuthService);
 
   loginForm:FormGroup = this._formBuilder.group({
     email: [null , [Validators.required , Validators.email]],
-    password: [null , [Validators.required , Validators.pattern(/^[A-Za-z]\w{6,}$/)]],
+    password: [null , [Validators.required ]],
   });
 
 

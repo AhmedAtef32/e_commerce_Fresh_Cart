@@ -82,9 +82,6 @@
 
               @if(passwordControl?.getError('required') && passwordControl?.touched){
               <li>Password is required</li>
-              }@else if (passwordControl?.getError('pattern') && passwordControl?.touched) {
-              <li>Password is not valid</li>
-
               }
 
 
