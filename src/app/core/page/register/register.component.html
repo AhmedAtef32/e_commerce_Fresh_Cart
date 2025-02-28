@@ -2,17 +2,19 @@
   <div class="container">
 
 
+<div [@bounce]="bounce">
+
+  <div class="flex justify-center items-center">
+    <img src="images/freshcart-logo.svg" alt="login">
+
+  </div>
 
 
-    <div class="flex justify-center items-center">
-      <img src="images/freshcart-logo.svg" alt="login">
-
-    </div>
+  <h1 class="text-3xl text-center text-main font-semibold"> Register Now : </h1>
+</div>
 
 
-    <h1 class="text-3xl text-center text-main font-semibold"> Register Now : </h1>
-
-    <form class=" bg-slate-50 md:w-1/2 mx-auto mt-10 p-10 shadow-lg border" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+    <form class=" bg-slate-50 md:w-1/2 mx-auto mt-10 p-10 shadow-lg border"  [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()"  [@zoomIn]="zoomIn">
 
 
       <div class="mb-3">

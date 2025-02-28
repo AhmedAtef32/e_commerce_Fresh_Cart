@@ -2,12 +2,18 @@ import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { bounce, zoomIn } from 'ng-animate';
 
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+    animations: [
+      trigger('bounce', [transition('* => *', useAnimation(bounce))]),
+      trigger('zoomIn', [transition('* => *', useAnimation(zoomIn))])
+    ],
 })
 export class RegisterComponent {
 
@@ -17,6 +23,8 @@ export class RegisterComponent {
   private readonly _formBuilder= inject(FormBuilder)
 
 
+  bounce: any;
+  zoomIn: any;
 
   iscalingApi:boolean = false
   sussessRegister!:string
