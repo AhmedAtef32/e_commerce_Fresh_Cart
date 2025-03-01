@@ -21,7 +21,7 @@ export class AccountSettingComponent implements OnInit , OnDestroy {
 
   fakeUserData:object = {
     name:this.userDetails.name,
-    email:"Fbm9@example.com",
+    email:"Fbm9999@example.com",
     phone:this.userDetails.phone
   }
 
