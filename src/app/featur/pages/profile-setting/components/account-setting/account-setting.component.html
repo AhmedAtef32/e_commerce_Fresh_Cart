@@ -38,7 +38,7 @@
     <div class="mb-6">
       <label class=" text-md font-extrabold text-gray-900 mb-1 block" for="name">Email :</label>
 
-      <input #email type="text" [(ngModel)]="email.value" name="email" formControlName="email" readonly id="email"  class="bg-gray-100 border bg-opacity-10 border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [value]="userDetails?.email" />
+      <input #email type="text" [(ngModel)]="email.value" name="email" formControlName="email"  id="email"  class="bg-gray-100 border bg-opacity-10 border-gray-300 w-full md:w-1/2 text-gray-900 text-sm rounded-md focus:ring-main   p-2.5  " [value]="userDetails?.email" />
 
       @let emailControl = FormupdateUserData.get("email");
 
